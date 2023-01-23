@@ -60,16 +60,23 @@ body {
 
                 .header-top-info-content {
 
-                    h5,
-                    p {
+                    a{
+                        transition: all .3s ease;
+                        &:hover{
+                            color: $color-yellow;
+                        }
+                    }
+                    a,
+                    p, h5 {
                         margin: 0;
                         padding: 0;
                         color: #000000;
                     }
 
-                    h5 {
+                    a, h5 {
                         font-size: 16px;
                         font-weight: 600;
+                        text-decoration: none;
                     }
 
                     p {
@@ -184,6 +191,27 @@ body {
                     align-items: center;
                     text-decoration: none;
                     color: #000000;
+                    position: relative;
+                    &:hover{
+                        &::after{
+                            left: 0;
+                            right: 0;
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        bottom: -5px;
+                        left: -5px;
+                        right: -5px;
+                        background-color: $color-main;
+                        height: 2px;
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: all .3s ease;
+                    }
 
                     img {
                         margin-bottom: 10px;
@@ -244,7 +272,6 @@ body {
         justify-content: flex-start;
         align-items: center;
         margin-top: -10px;
-        position: relative;
         border-bottom: 1px solid #ffffff76;
 
         @media(max-width: 991px) {
@@ -252,6 +279,8 @@ body {
         }
 
         .nav-item-main-content {
+            position: relative;
+
             &:hover {
                 .nav-item-main-offer {
                     visibility: visible;
@@ -324,47 +353,105 @@ body {
                 position: absolute;
                 top: 62px;
                 left: 0;
-                right: 0;
                 background-color: $color-white;
                 z-index: 9999;
-                padding: 20px;
                 visibility: hidden;
                 opacity: 0;
                 transition: all .3s ease;
+                max-width: 1300px;
+                min-width: 340px;
 
                 ul {
                     list-style: none;
                     padding: 0;
                     margin: 0;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                    grid-gap: 5px 10px;
+                  
 
                     >li {
-                        >a {
-                            color: $color-main;
-                            font-size: 16px;
-                            font-weight: 500;
-                            display: block;
-                            line-height: 18px;
-                            margin-bottom: 5px;
-                            text-decoration: none;
-                        }
-
-                        ol {
-                            padding: 0;
-                            list-style: none;
-
-                            li {
-                                a {
-                                    font-weight: 500;
-                                    font-size: 12px;
-                                    color: #737373;
-                                    display: block;
-                                    line-height: 20px;
+                        display: flex;
+                        position: relative;
+                        &:hover{
+                            .nav-item-main-sub {
+                                visibility: visible;
+                                opacity: 1;
+                            }
+                            a{
+                                color: $color-main;
+                                svg {
+                                    fill: $color-main;
                                 }
                             }
                         }
+
+                        &:last-child {
+                            a {
+                                border-bottom: unset;
+                            }
+                        }
+
+                        >a {
+                            width: 100%;
+                            color: #000000;
+                            font-size: 14px;
+                            font-weight: 500;
+                            text-decoration: none;
+                            padding: 8px 10px;
+                            border-bottom: 1px solid $color-gray;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            svg {
+                                width: 13px;
+                                height: auto;
+                                transition: all .3s ease;
+                            }
+
+                           
+                        }
+
+                        .nav-item-main-sub {
+                            position: absolute;
+                            top: 0;
+                            left: 340px;
+                            visibility: hidden;
+                            opacity: 0;
+                            padding: 15px 25px;
+                            background-color: $color-white;
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, 210px);
+                            grid-gap: 25px;
+                            min-width: 235px;
+                            max-width: 730px;
+                            @media(max-width: 1199px){
+                                max-width: 495px;
+                            }
+                            .nav-item-main-sub-element{
+                                a {
+                                    color: $color-main;
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                    display: block;
+                                    line-height: 18px;
+                                    margin-bottom: 5px;
+                                    text-decoration: none;
+                                }
+                                ol {
+                                    padding: 0;
+                                    list-style: none;
+                                    li {
+                                        a {
+                                            font-weight: 500;
+                                            font-size: 12px;
+                                            color: #737373;
+                                            display: block;
+                                            line-height: 20px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
@@ -503,25 +590,30 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
-    @media(max-width: 1199px){
+
+    @media(max-width: 1199px) {
         grid-template-columns: repeat(4, 1fr);
     }
-    @media(max-width: 991px){
+
+    @media(max-width: 991px) {
         grid-template-columns: repeat(3, 1fr);
     }
-    @media(max-width: 767px){
+
+    @media(max-width: 767px) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media(max-width: 550px){
+
+    @media(max-width: 550px) {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    a.nav-focus-box-link{
+    a.nav-focus-box-link {
         background-color: $color-white;
         color: $color-yellow;
         text-align: center;
         padding: 15px 0;
-        &:hover{
+
+        &:hover {
             background-color: $color-yellow;
             color: $color-white;
         }
@@ -555,6 +647,7 @@ body {
                 li {
                     position: relative;
                     padding-left: 20px;
+
                     a {
                         font-size: 14px;
                         font-weight: 400;
